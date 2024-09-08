@@ -1,0 +1,43 @@
+<template>
+    <!-- 最初のlightning-cardコンポーネント: タイトル、アイコン付きで、クッキーに関連する操作のためのボタンを含む -->
+    <lightning-card variant="Narrow" title="LWC Cookies" icon-name="standard:account">
+        <!-- 中央揃えのスタイルを適用し、ボタンに余白を追加 -->
+        <div class="slds-p-horizontal_small" style="text-align:center">
+            <!-- クッキー削除ボタン: データを削除するための「destructive」スタイルが適用されたボタン -->
+            <lightning-button variant="destructive" label="Delete Cookies" title="Delete Cookies" onclick={deleteCookie}
+                class="slds-m-left_x-small">
+            </lightning-button>
+ 
+            <!-- クッキー読み取りボタン: クッキーデータを読み込むための「success」スタイルが適用されたボタン -->
+            <lightning-button variant="success" label="Read Cookies" title="Read Cookies" onclick={getCookie}
+                class="slds-m-left_x-small">
+            </lightning-button>
+ 
+            <!-- クッキー作成ボタン: 新しいクッキーを作成するための「brand」スタイルが適用されたボタン -->
+            <lightning-button variant="brand" label="Create Cookies" title="Create Cookies" onclick={handleCookieCreate}
+                class="slds-m-left_x-small">
+            </lightning-button>
+        </div>
+    </lightning-card>
+    <!-- カード間の余白を追加するための改行 -->
+    <br/>
+ 
+    <!-- 二つ目のlightning-cardコンポーネント: クッキーのデータを表示するためのカード -->
+    <lightning-card variant="Narrow" title="LWC Cookies Output">
+        <!-- カード内のデータ表示エリア -->
+        <div class="slds-var-p-around_small">
+            <!-- cookieVal配列の各項目をループして表示。各項目はobjとして参照される -->
+            <template for:each={cookieVal} for:item="obj">
+                <!-- キー属性は一意な値である必要があるため、obj.Nameをキーとして使用 -->
+                <div key={obj.Name}>
+                    <!-- クッキーの「名前」を表示 -->
+                    <p>Name : {obj.Name}</p>
+                    <!-- クッキーの「性別」を表示 -->
+                    <p>Gender : {obj.Gender}</p>
+                    <!-- 各クッキー項目の区切り線 -->
+                    <p>-----------------</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
